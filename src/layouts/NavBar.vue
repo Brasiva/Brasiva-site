@@ -1,25 +1,25 @@
 <template>
   <section class="navbar">
     <nav class="navbar-menu">
-            <router-link to="/#quiz" class="menu-item">
-              <span>Monte seu Evento</span>
-            </router-link>
+            <a href="/#quiz" class="menu-item">
+              <span>Monte seu evento</span>
+            </a>
 
-            <router-link to="/#pedidos" class="menu-item">
-              <span>Mais pedidos</span>
-            </router-link>
+            <a href="/#pedidos" class="menu-item">
+              <span>Mais Pedidos</span>
+            </a>
 
             <router-link to="/eventos" class="menu-item">
               <span>Eventos</span>
             </router-link>
 
-            <router-link to="/#sobrenos" class="menu-item">
-              <span>Sobre Nós</span>
-            </router-link>
+            <a href="/#sobrenos" class="menu-item">
+              <span>Sobrenós</span>
+            </a>
     </nav>
-    <router-link to="/#quiz" class="button">
+    <!-- <router-link to="/#quiz" class="button">
       <button type="button">PEÇA AGORA</button>
-    </router-link>
+    </router-link> -->
   </section>
 </template>
 <style scoped>
@@ -74,9 +74,8 @@
   width: 100%;
 }
 
-.button {
-  position: absolute;
-  right: 220px;
+/* .button {
+  margin-left: 70px;
 }
 
 button {
@@ -88,5 +87,5 @@ button {
   border: none;
   padding: 7px 14px;
   cursor: pointer;
-}
+} */
 </style>
