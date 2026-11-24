@@ -3,7 +3,7 @@
 const categories = {
   count: 1,
   total_pages: 1,
-  results: [{ id: 7, nome: 'Salgados tradicionais', quantidade_opcoes: 1, publicada: true }],
+  results: [{ id: 7, nome: 'Salgados tradicionais', quantidade_opcoes: 1, quantidade_disponiveis: 1, publicada: true }],
 }
 
 const products = {
@@ -45,7 +45,8 @@ test('menu shows API categories and their availability count', async ({ page }) 
   await mockCatalog(page)
   await page.goto('/cardapios')
   await expect(page.getByRole('heading', { name: 'Salgados tradicionais' })).toBeVisible()
-  await expect(page.getByText('1 opção disponível')).toBeVisible()
+  await expect(page.getByText(/1 item no card/)).toBeVisible()
+  await expect(page.getByText(/1 dispon.* para pedido/)).toBeVisible()
 })
 
 test('customer selects a product and sees the item estimate', async ({ page }) => {
