@@ -23,6 +23,7 @@ export const cardapioApi = {
   categorias: () => buscarTodas('/api/categoria-pratos/'),
   pratos: async (categoria) => buscarTodas(categoria ? `/api/pratos/?categoria=${encodeURIComponent(categoria)}` : '/api/pratos/'),
   enviarPedido: (pedido) => api.post('/api/pedidos-site/', pedido),
+  consultarPedido: (token) => api.get('/api/pedidos-site/consulta-orcamento/', { params: { token } }),
 }
 
 export default api

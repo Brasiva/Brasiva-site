@@ -12,6 +12,7 @@ const router = createRouter({
     { path: '/cardapios', name: 'cardapios', component: CardapiosView },
     { path: '/cardapios/:id', name: 'categoria', component: CategoriaView, props: true },
     { path: '/pedido', name: 'pedido', component: PedidoView },
+    { path: '/pedido/confirmado/:token', name: 'pedido-confirmado', component: PedidoView },
   ],
 })
 
