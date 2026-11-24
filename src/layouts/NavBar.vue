@@ -6,7 +6,7 @@
       <a href="/#sobrenos" class="menu-item">Sobre nós</a>
       <RouterLink to="/cardapios" class="menu-item">Cardápios</RouterLink>
     </nav>
-    <RouterLink to="/cardapios" class="order-button">Faça seu pedido</RouterLink>
+    <RouterLink to="/pedido" class="order-button">Faça seu pedido</RouterLink>
   </header>
 </template>
 <style scoped>

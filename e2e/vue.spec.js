@@ -21,6 +21,11 @@ const products = {
 }
 
 async function mockCatalog(page) {
+  await page.route('https://viacep.com.br/ws/**', (route) => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: JSON.stringify({ logradouro: 'Rua das Flores', bairro: 'Centro', localidade: 'Florianópolis', uf: 'SC' }),
+  }))
   await page.route('**/api/categoria-pratos/**', (route) => route.fulfill({
     status: 200,
     contentType: 'application/json',
@@ -33,12 +38,21 @@ async function mockCatalog(page) {
   }))
 }
 
-test('home CTA opens the menu', async ({ page }) => {
+test('home CTA opens the first order step directly', async ({ page }) => {
   await mockCatalog(page)
   await page.goto('/')
-  await page.getByRole('link', { name: /monte seu pedido/i }).click()
-  await expect(page.getByRole('heading', { name: 'Nosso cardápio' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Salgados tradicionais' })).toBeVisible()
+  await page.locator('.hero__copy').getByRole('link', { name: /faça seu pedido/i }).click()
+  await expect(page).toHaveURL(/\/pedido$/)
+  await expect(page.getByText('ETAPA 01')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Escolha seu pedido' })).toBeVisible()
+})
+
+test('navigation order CTA opens the first order step directly', async ({ page }) => {
+  await mockCatalog(page)
+  await page.goto('/cardapios')
+  await page.getByRole('link', { name: /faça seu pedido/i }).click()
+  await expect(page).toHaveURL(/\/pedido$/)
+  await expect(page.getByText('ETAPA 01')).toBeVisible()
 })
 
 test('menu shows API categories and their availability count', async ({ page }) => {
@@ -88,8 +102,8 @@ test('site order is submitted in four steps and opens confirmation', async ({ pa
   await page.getByLabel(/hor.rio do evento/i).fill('18:30')
   await page.getByLabel('Convidados').fill('20')
   await page.getByLabel('CEP').fill('88000-000')
-  await page.getByLabel('UF').fill('SC')
-  await page.getByLabel('Rua / avenida').fill('Rua das Flores')
+  await expect(page.getByLabel('UF')).toHaveValue('SC')
+  await expect(page.getByLabel('Rua / avenida')).toHaveValue('Rua das Flores')
   await page.getByLabel(/n.mero/i).fill('42')
   await page.getByLabel('Bairro').fill('Centro')
   await page.getByLabel('Cidade').fill('Florianópolis')

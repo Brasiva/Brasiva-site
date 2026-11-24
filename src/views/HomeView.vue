@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="hero">
-      <div class="hero__copy"><span class="kicker">CELEBRE COM SABOR</span><h1>Momentos especiais<br>merecem uma mesa<br><em>inesquecível.</em></h1><p>Buffet feito com afeto para encontros que ficam na memória.</p><RouterLink class="button" to="/cardapios">Monte seu pedido <span>→</span></RouterLink></div>
+      <div class="hero__copy"><span class="kicker">CELEBRE COM SABOR</span><h1>Momentos especiais<br>merecem uma mesa<br><em>inesquecível.</em></h1><p>Buffet feito com afeto para encontros que ficam na memória.</p><RouterLink class="button" to="/pedido">Faça seu pedido <span>→</span></RouterLink></div>
       <div class="hero__art" role="img" aria-label="Mesa de festa decorada com flores e pratos"></div>
       <span class="hero__badge">Seu evento,<br>do seu jeito.</span>
     </section>
